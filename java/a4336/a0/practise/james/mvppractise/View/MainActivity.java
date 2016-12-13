@@ -12,8 +12,8 @@ import a4336.a0.practise.james.mvppractise.R;
  */
 public class MainActivity extends AppCompatActivity implements ViewInterface{
 
-
     private PresenterImpl presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements ViewInterface{
     protected void onDestroy() {
 
         super.onDestroy();
+        
         presenter.onDestroy();
         presenter = null;
     }
