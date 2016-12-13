@@ -1,14 +1,18 @@
 package a4336.a0.practise.james.mvppractise.View;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
+import a4336.a0.practise.james.mvppractise.Presenter.ListPresenter;
 import a4336.a0.practise.james.mvppractise.Presenter.PresenterImpl;
 import a4336.a0.practise.james.mvppractise.R;
 
 
 /**
- * View Component of MVP pattern
+ * A view Component of MVP pattern.
  */
 public class MainActivity extends AppCompatActivity implements ViewInterface{
 
@@ -21,9 +25,18 @@ public class MainActivity extends AppCompatActivity implements ViewInterface{
         setContentView(R.layout.activity_main);
 
         /**
-         * Reference between View and Presenter
+         * Reference between View and Presenter.
          */
         presenter = new PresenterImpl(this);
+
+        Button getStartedButton = (Button) findViewById(R.id.get_started_button);
+        getStartedButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -44,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements ViewInterface{
     protected void onDestroy() {
 
         super.onDestroy();
-        
+
         presenter.onDestroy();
         presenter = null;
     }
@@ -61,5 +74,14 @@ public class MainActivity extends AppCompatActivity implements ViewInterface{
 
         presenter.onResume();
     }
+
+    public void doAction(){
+
+        /**
+         * will display list of notes.
+         */
+
+    }
+
 
 }

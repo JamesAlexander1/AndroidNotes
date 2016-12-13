@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MVPpractise</string>
+    <string name="get_started_string">Get Started.</string>
+    <string name="back_string">Back</string>
 </resources>
