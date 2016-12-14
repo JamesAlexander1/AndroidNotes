@@ -6,8 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import a4336.a0.practise.james.mvppractise.Presenter.ListPresenter;
+
 import a4336.a0.practise.james.mvppractise.Presenter.PresenterImpl;
+import a4336.a0.practise.james.mvppractise.Presenter.PresenterInterface;
 import a4336.a0.practise.james.mvppractise.R;
 
 
@@ -16,7 +17,7 @@ import a4336.a0.practise.james.mvppractise.R;
  */
 public class MainActivity extends AppCompatActivity implements ViewInterface{
 
-    private PresenterImpl presenter;
+    private PresenterInterface presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +78,7 @@ public class MainActivity extends AppCompatActivity implements ViewInterface{
 
     public void doAction(){
 
-        /**
-         * will display list of notes.
-         */
+
 
     }
 

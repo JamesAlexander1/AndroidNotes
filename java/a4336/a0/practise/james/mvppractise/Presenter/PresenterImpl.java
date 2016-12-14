@@ -30,7 +30,11 @@ public class PresenterImpl implements PresenterInterface{
 
 
     public void onDestroy() {
-
+        /**
+         * add functionality to dereference all model.
+         */
+        model = null;
+        mainView = null;
     }
 
 
@@ -43,4 +47,9 @@ public class PresenterImpl implements PresenterInterface{
 
     }
 
+    @Override
+    public ModelInterface retrieveModel(){
+
+        return null;
+    }
 }

@@ -17,4 +17,20 @@
         android:id="@+id/listAc_Back_Button"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/listAc_Back_Button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="31dp"
+        android:id="@+id/Note_List_View" />
+
+    <Button
+        android:text="@string/add_note_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/Add_Note_Button" />
 </RelativeLayout>
