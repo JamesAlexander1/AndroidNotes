@@ -34,6 +34,7 @@ public class ListActivity extends AppCompatActivity implements ViewInterface{
             }
         });
 
+
         listView = (ListView) findViewById(R.id.Note_List_View);
 
 
