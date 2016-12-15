@@ -1,5 +1,6 @@
 package a4336.a0.practise.james.mvppractise.Presenter;
 
+import a4336.a0.practise.james.mvppractise.DAO.IDAO;
 import a4336.a0.practise.james.mvppractise.Model.ModelImpl;
 import a4336.a0.practise.james.mvppractise.Model.ModelInterface;
 import a4336.a0.practise.james.mvppractise.View.ViewInterface;
@@ -12,11 +13,11 @@ import a4336.a0.practise.james.mvppractise.View.ViewInterface;
 public class PresenterImpl implements PresenterInterface{
 
     private ViewInterface mainView;
-    private ModelInterface model;
+    //private ModelInterface model;
     public PresenterImpl(ViewInterface view){
 
         mainView = view;
-        model = new ModelImpl();
+       // model = new ModelImpl();
 
     }
 
@@ -33,7 +34,7 @@ public class PresenterImpl implements PresenterInterface{
         /**
          * add functionality to dereference all model.
          */
-        model = null;
+        //model = null;
         mainView = null;
     }
 
@@ -48,8 +49,9 @@ public class PresenterImpl implements PresenterInterface{
     }
 
     @Override
-    public ModelInterface retrieveModel(){
-
+    public IDAO retrieveModel() {
         return null;
     }
+
+
 }

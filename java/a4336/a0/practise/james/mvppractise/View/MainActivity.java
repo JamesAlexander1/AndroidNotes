@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements ViewInterface{
     @Override
     protected void onResume() {
 
+        super.onResume();
         presenter.onResume();
     }
 
