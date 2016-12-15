@@ -1,5 +1,6 @@
 package a4336.a0.practise.james.mvppractise.View;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,14 @@ public class ListActivity extends AppCompatActivity implements ViewInterface{
             }
         });
 
+        Button addButton = (Button) findViewById(R.id.Add_Note_Button);
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListActivity.this, AddNoteActivity.class);
+                startActivity(intent);
+            }
+        });
 
         listView = (ListView) findViewById(R.id.Note_List_View);
 
