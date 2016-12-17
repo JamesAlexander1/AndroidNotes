@@ -4,29 +4,29 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
+
 import a4336.a0.practise.james.mvppractise.DAO.IDAO;
 import a4336.a0.practise.james.mvppractise.Model.ModelImpl;
 import a4336.a0.practise.james.mvppractise.Model.ModelInterface;
-
 import a4336.a0.practise.james.mvppractise.View.ViewInterface;
 
 /**
- * Created by james on 15/12/16.
+ * Created by james on 17/12/16.
  */
 
-public class AddNotePresenter implements PresenterInterface<String> {
+public class NoteDetailPresenter implements PresenterInterface<String>{
 
-    private ModelInterface model;
     private ViewInterface mainView;
+    private ModelInterface model;
+    private String note_title;
 
-    public AddNotePresenter(ViewInterface view, Context context) {
+    public NoteDetailPresenter(ViewInterface view, Context context, String title){
 
         mainView = view;
-        /**
-         * maybe have view display operation success message?
-         */
         model = new ModelImpl(context);
+        note_title = title;
     }
+
     @Override
     public void onStart() {
 
@@ -44,10 +44,8 @@ public class AddNotePresenter implements PresenterInterface<String> {
         mainView = null;
     }
 
-
     @Override
     public void onDestroy() {
-
 
     }
 
@@ -63,17 +61,13 @@ public class AddNotePresenter implements PresenterInterface<String> {
 
     @Override
     public IDAO retrieveModel() {
+        IDAO<String> dao = model.getSpecificNote(note_title);
 
-        return null;
+        return dao;
     }
 
     @Override
     public void doAction(IDAO<String> dao) {
-        ArrayList<String> temp = dao.getFields();
-        model.SaveNote(temp.get(0), temp.get(1));
+
     }
-
-
-
-
 }

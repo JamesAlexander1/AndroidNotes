@@ -6,7 +6,7 @@ package a4336.a0.practise.james.mvppractise.View;
 
 public interface ViewInterface {
 
-    public void doAction();
+    void doAction();
 
 
 

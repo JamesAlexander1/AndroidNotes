@@ -38,11 +38,16 @@ public class ListPresenter implements PresenterInterface {
 
     }
 
-
-    public void onDestroy() {
+    @Override
+    public void onStop() {
         model.clean();
         model = null;
         mainView = null;
+    }
+
+
+    public void onDestroy() {
+
     }
 
 
@@ -64,7 +69,10 @@ public class ListPresenter implements PresenterInterface {
         return data;
     }
 
+    @Override
+    public void doAction(IDAO dao) {
 
+    }
 
 
 

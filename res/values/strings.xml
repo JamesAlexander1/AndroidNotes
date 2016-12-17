@@ -5,4 +5,5 @@
     <string name="add_note_string">Add Note</string>
     <string name="note_body_string">Note Body</string>
     <string name="your_note_s_title_string">your note\'s title !</string>
+    <string name="save_note_string">Save Note</string>
 </resources>

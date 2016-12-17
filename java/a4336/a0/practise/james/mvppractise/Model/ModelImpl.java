@@ -27,6 +27,13 @@ public class ModelImpl implements ModelInterface{
     }
 
     @Override
+    public boolean SaveNote(String title, String noteBody) {
+
+        return storageAccess.createFile(title, noteBody);
+
+    }
+
+    @Override
     public boolean clean() {
         storageAccess.clean();
         storageAccess = null;
@@ -39,5 +46,13 @@ public class ModelImpl implements ModelInterface{
 
 
     }
+
+    public IDAO getSpecificNote(String note_title){
+
+        DAO<String> dao = new DAO<String>(storageAccess.getSpecificNote(note_title));
+
+        return dao;
+    }
+
 
 }

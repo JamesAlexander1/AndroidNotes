@@ -51,16 +51,23 @@ public class MainActivity extends AppCompatActivity implements ViewInterface{
     protected void onRestart() {
 
         super.onRestart();
+        presenter = new PresenterImpl(this);
         presenter.onRestart();
     }
 
     @Override
+    protected void onStop(){
+
+        super.onStop();
+        presenter.onStop();
+        presenter = null;
+    }
+    @Override
     protected void onDestroy() {
 
         super.onDestroy();
-
         presenter.onDestroy();
-        presenter = null;
+
     }
 
     @Override

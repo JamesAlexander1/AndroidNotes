@@ -42,4 +42,12 @@
         android:layout_below="@+id/add_note_back_button"
         android:layout_alignParentStart="true"
         android:layout_marginTop="27dp" />
+
+    <Button
+        android:text="@string/save_note_string"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/save_and_add_note_button" />
 </RelativeLayout>

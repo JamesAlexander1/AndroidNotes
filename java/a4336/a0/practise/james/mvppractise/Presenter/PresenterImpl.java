@@ -29,13 +29,18 @@ public class PresenterImpl implements PresenterInterface{
 
     }
 
-
-    public void onDestroy() {
+    @Override
+    public void onStop() {
         /**
          * add functionality to dereference all model.
          */
         //model = null;
         mainView = null;
+    }
+
+
+    public void onDestroy() {
+
     }
 
 
@@ -52,6 +57,12 @@ public class PresenterImpl implements PresenterInterface{
     public IDAO retrieveModel() {
         return null;
     }
+
+    @Override
+    public void doAction(IDAO dao) {
+
+    }
+
 
 
 }
