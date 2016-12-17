@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class NoteDetailActivity extends AppCompatActivity implements ViewInterfa
 
     private PresenterInterface presenter;
     private String noteTitle;
+    TextView title;
+    EditText editText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +37,23 @@ public class NoteDetailActivity extends AppCompatActivity implements ViewInterfa
             }
         });
 
+        Button deleteButton = (Button) findViewById(R.id.note_detail_delete_button);
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.doAction(null);
+                finish();
+            }
+        });
+        title = (TextView) findViewById(R.id.node_detail_title_text_view);
+        editText = (EditText) findViewById(R.id.note_detail_editText);
+
         noteTitle = getIntent().getStringExtra("note_title");
         presenter = new NoteDetailPresenter(this, getApplicationContext(), noteTitle);
 
+        /**
+         * add editing text functionality.
+         */
 
         doAction();
 
@@ -92,12 +109,13 @@ public class NoteDetailActivity extends AppCompatActivity implements ViewInterfa
          * Query internal storage for specific note.
          */
         IDAO data = presenter.retrieveModel();
-        TextView title = (TextView) findViewById(R.id.node_detail_title_text_view);
-        TextView body = (TextView) findViewById(R.id.node_detail_body_text_view);
+
+
         ArrayList<String> dataView = data.getFields();
 
         title.setText(dataView.get(0));
-        body.setText(dataView.get(1));
+        editText.setText(dataView.get(1));
+
 
     }
 }

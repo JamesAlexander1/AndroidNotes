@@ -54,5 +54,14 @@ public class ModelImpl implements ModelInterface{
         return dao;
     }
 
+    @Override
+    public boolean deleteNote(String note_title){
+        /**
+         * add boolean checks.
+         */
+        storageAccess.deleteNote(note_title);
+        return true;
+    }
+
 
 }

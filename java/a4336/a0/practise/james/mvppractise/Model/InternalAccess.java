@@ -46,7 +46,10 @@ class InternalAccess implements StorageInterface {
     }
 
     public boolean deleteNote(String fileName){
-        return false;
+        File dir = retrieveInternalDirectory();
+        File file_to_delete = new File(dir, fileName);
+        file_to_delete.delete();
+        return true;
     }
 
     @Override

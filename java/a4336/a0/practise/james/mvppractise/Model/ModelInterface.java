@@ -16,4 +16,5 @@ public interface ModelInterface {
     boolean SaveNote(String title, String noteBody);
     boolean clean();
     IDAO getSpecificNote(String note_title);
+    boolean deleteNote(String note_title);
 }
