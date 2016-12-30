@@ -2,6 +2,8 @@ package a4336.a0.practise.james.mvppractise.Model;
 
 import android.content.Context;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -9,6 +11,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
 
 /**
@@ -68,27 +74,52 @@ class InternalAccess implements StorageInterface {
 
         File specific_note = new File(retrieveInternalDirectory(), title);
         ArrayList<String> note = new ArrayList<>();
+
         try{
-            FileReader fr = new FileReader(specific_note);
-            char[] ch = new char[100];
+
+
+
+            FileInputStream inputStream = new FileInputStream(specific_note);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+            String lineRead;
+            StringBuilder builder = new StringBuilder();
+            while((lineRead = reader.readLine()) != null){
+
+                builder = builder.append(lineRead);
+            }
+
+            lineRead = builder.toString();
+
+
+            reader.close();
+
 
             /**
-             * Learn Why fileInputStream works: byte[] -> char[] -> string
+             * why does the question mark character show up?
              */
-            fr.read(ch);
 
-            note.add(specific_note.getAbsolutePath());
-            note.add(String.copyValueOf(ch));
-            fr.close();
 
+            System.out.println(lineRead);
+            note.add(specific_note.getName());
+            note.add(lineRead);
 
         }catch (IOException e){
 
-            note.add("Error, note retrieval fail - NodeDetailActvity");
+            note.add("Error, note retrieval fail - NodeDetailActivity");
 
         }
         return note;
 
+    }
+
+    @Override
+    public boolean modifyNote(String fileName, String body) {
+
+        createFile(fileName, body);
+        /**
+         * Change from boolean ?
+         */
+        return true;
     }
 
     public boolean createFile(String title, String noteBody){
@@ -96,17 +127,19 @@ class InternalAccess implements StorageInterface {
         File newFile = new File(retrieveInternalDirectory(), title);
 
         try {
-            System.out.println(noteBody.getBytes());
-            FileOutputStream outputStream = new FileOutputStream(newFile);
-            outputStream.write(noteBody.getBytes());
 
-            outputStream.close();
+
+            FileOutputStream outputStream = new FileOutputStream(newFile);
+            Writer out = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+            out.write(noteBody);
+            out.close();
+
             return true;
 
         }catch(FileNotFoundException e){
             e.printStackTrace();
             /**
-             * Log file error / display error code.
+             * should Log file error / display error code.
              */
         } catch (IOException e) {
             e.printStackTrace();

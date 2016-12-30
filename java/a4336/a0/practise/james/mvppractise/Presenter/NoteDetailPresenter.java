@@ -66,10 +66,16 @@ public class NoteDetailPresenter implements PresenterInterface<String>{
         return dao;
     }
 
+
+
     @Override
     public void doAction(IDAO<String> dao) {
 
-        model.deleteNote(note_title);
+
+
+            model.deleteNote(note_title);
+
     }
+
 
 }

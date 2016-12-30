@@ -2,14 +2,20 @@ package a4336.a0.practise.james.mvppractise.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import a4336.a0.practise.james.mvppractise.DAO.DAO;
 import a4336.a0.practise.james.mvppractise.DAO.IDAO;
+import a4336.a0.practise.james.mvppractise.Presenter.AddNotePresenter;
 import a4336.a0.practise.james.mvppractise.Presenter.NoteDetailPresenter;
 import a4336.a0.practise.james.mvppractise.Presenter.PresenterInterface;
 import a4336.a0.practise.james.mvppractise.R;
@@ -20,8 +26,11 @@ import a4336.a0.practise.james.mvppractise.R;
  */
 public class NoteDetailActivity extends AppCompatActivity implements ViewInterface{
 
-    private PresenterInterface presenter;
+    private PresenterInterface deleteAndRetrievePresenter;
+    private PresenterInterface savePresenter;
     private String noteTitle;
+
+    boolean hack = true;
     TextView title;
     EditText editText;
     @Override
@@ -41,15 +50,48 @@ public class NoteDetailActivity extends AppCompatActivity implements ViewInterfa
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.doAction(null);
-                finish();
+                /**
+                 * should use threads and locks. will update
+                 */
+                if(hack) {
+                    deleteAndRetrievePresenter.doAction(null);
+                    finish();
+                }
             }
         });
         title = (TextView) findViewById(R.id.node_detail_title_text_view);
         editText = (EditText) findViewById(R.id.note_detail_editText);
+        editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(actionId == EditorInfo.IME_ACTION_DONE){
+                    System.out.println("done");
+                    hack = false;
+
+                    /**
+                     * not really a dao. lol. need to restructure all of this.
+                     */
+
+                    ArrayList<String> fields = new ArrayList<String>();
+                    fields.add(title.getText().toString());
+                    fields.add(editText.getText().toString());
+
+
+
+                    IDAO<String> dao = new DAO<String>(fields);
+                    savePresenter.doAction(dao);
+
+
+                    hack = true;
+                    return true;
+                }
+                return false;
+            }
+        });
 
         noteTitle = getIntent().getStringExtra("note_title");
-        presenter = new NoteDetailPresenter(this, getApplicationContext(), noteTitle);
+        deleteAndRetrievePresenter = new NoteDetailPresenter(this, getApplicationContext(), noteTitle);
+        savePresenter = new AddNotePresenter(this, getApplicationContext());
 
         /**
          * add editing text functionality.
@@ -63,15 +105,22 @@ public class NoteDetailActivity extends AppCompatActivity implements ViewInterfa
     protected void onStart() {
 
         super.onStart();
-        presenter.onStart();
+        deleteAndRetrievePresenter.onStart();
+        savePresenter.onStart();
     }
 
     @Override
     protected void onRestart() {
 
         super.onRestart();
-        presenter = new NoteDetailPresenter(this, getApplicationContext(),noteTitle);
-        presenter.onRestart();
+        deleteAndRetrievePresenter = new NoteDetailPresenter(this, getApplicationContext(),noteTitle);
+        savePresenter = new AddNotePresenter(this, getApplicationContext());
+
+        /**
+         * Dont think these are needed. go over activity lifecycle. decide if presenters should be destroyed on calling onStop().
+         */
+        deleteAndRetrievePresenter.onRestart();
+        savePresenter.onRestart();
         doAction();
     }
 
@@ -79,42 +128,49 @@ public class NoteDetailActivity extends AppCompatActivity implements ViewInterfa
     protected void onStop(){
 
         super.onStop();
-        presenter.onStop();
+        deleteAndRetrievePresenter.onStop();
+        savePresenter.onStop();
 
     }
     @Override
     protected void onDestroy() {
 
         super.onDestroy();
-        presenter.onDestroy();
-        presenter = null;
+        deleteAndRetrievePresenter.onDestroy();
+        savePresenter.onDestroy();
+        deleteAndRetrievePresenter = null;
+        savePresenter = null;
     }
 
     @Override
     protected void onPause() {
 
         super.onPause();
-        presenter.onPause();
+        deleteAndRetrievePresenter.onPause();
+        savePresenter.onPause();
     }
 
     @Override
     protected void onResume() {
 
         super.onResume();
-        presenter.onResume();
+        deleteAndRetrievePresenter.onResume();
+        savePresenter.onResume();
     }
     @Override
     public void doAction() {
         /**
          * Query internal storage for specific note.
          */
-        IDAO data = presenter.retrieveModel();
+        IDAO data = deleteAndRetrievePresenter.retrieveModel();
 
 
         ArrayList<String> dataView = data.getFields();
 
         title.setText(dataView.get(0));
-        editText.setText(dataView.get(1));
+        String temp = dataView.get(1);
+        System.out.println(temp);
+        editText.setText(temp);
 
 
     }

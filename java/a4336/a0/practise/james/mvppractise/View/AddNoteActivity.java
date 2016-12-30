@@ -74,7 +74,7 @@ public class AddNoteActivity extends AppCompatActivity implements ViewInterface{
     protected void onRestart() {
 
         super.onRestart();
-
+        presenter = new AddNotePresenter(this, getApplicationContext());
         presenter.onRestart();
     }
 
