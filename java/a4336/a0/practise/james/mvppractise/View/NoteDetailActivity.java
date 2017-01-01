@@ -2,8 +2,6 @@ package a4336.a0.practise.james.mvppractise.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -13,8 +11,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import a4336.a0.practise.james.mvppractise.DAO.DAO;
-import a4336.a0.practise.james.mvppractise.DAO.IDAO;
+import a4336.a0.practise.james.mvppractise.DTO.DTO;
+import a4336.a0.practise.james.mvppractise.DTO.IDTO;
 import a4336.a0.practise.james.mvppractise.Presenter.AddNotePresenter;
 import a4336.a0.practise.james.mvppractise.Presenter.NoteDetailPresenter;
 import a4336.a0.practise.james.mvppractise.Presenter.PresenterInterface;
@@ -78,7 +76,7 @@ public class NoteDetailActivity extends AppCompatActivity implements ViewInterfa
 
 
 
-                    IDAO<String> dao = new DAO<String>(fields);
+                    IDTO<String> dao = new DTO<String>(fields);
                     savePresenter.doAction(dao);
 
 
@@ -162,7 +160,7 @@ public class NoteDetailActivity extends AppCompatActivity implements ViewInterfa
         /**
          * Query internal storage for specific note.
          */
-        IDAO data = deleteAndRetrievePresenter.retrieveModel();
+        IDTO data = deleteAndRetrievePresenter.retrieveModel();
 
 
         ArrayList<String> dataView = data.getFields();

@@ -1,4 +1,4 @@
-package a4336.a0.practise.james.mvppractise.DAO;
+package a4336.a0.practise.james.mvppractise.DTO;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by james on 14/12/16.
  */
 
-public interface IDAO<E> {
+public interface IDTO<E> {
 
     ArrayList<E> getFields();
 }

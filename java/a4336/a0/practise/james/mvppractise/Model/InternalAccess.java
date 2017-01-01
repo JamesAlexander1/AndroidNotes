@@ -31,6 +31,10 @@ class InternalAccess implements StorageInterface {
         context = ct;
     }
 
+    /**
+     * getNoteList method queries internal storage for list of file names.
+     * @return ArrayList of file names as Strings.
+     */
     public ArrayList<String> getNoteList(){
 
         File directory = retrieveInternalDirectory();
@@ -41,9 +45,16 @@ class InternalAccess implements StorageInterface {
         for(File f : files){
             noteList.add(f.getName());
         }
+
+        files = null;
+        directory = null;
         return noteList;
     }
 
+    /**
+     * private method for retrieving file directory.
+     * @return
+     */
     private File retrieveInternalDirectory(){
 
         File dir = context.getDir(dirName, Context.MODE_PRIVATE);
@@ -51,6 +62,11 @@ class InternalAccess implements StorageInterface {
         return dir;
     }
 
+    /**
+     * method for deleting File with specified file name.
+     * @param fileName String
+     * @return boolean value. always true as of now.
+     */
     public boolean deleteNote(String fileName){
         File dir = retrieveInternalDirectory();
         File file_to_delete = new File(dir, fileName);
@@ -58,6 +74,10 @@ class InternalAccess implements StorageInterface {
         return true;
     }
 
+    /**
+     * method for cleaning up InternalAccess object's instanced variables.
+     * @return
+     */
     @Override
     public boolean clean() {
 
@@ -69,6 +89,11 @@ class InternalAccess implements StorageInterface {
         }
     }
 
+    /**
+     * Method for retrieving text of specific file.
+     * @param title String containing name of file to read.
+     * @return a ArrayList containing name and content of file.
+     */
     @Override
     public ArrayList<String> getSpecificNote(String title) {
 
@@ -112,6 +137,12 @@ class InternalAccess implements StorageInterface {
 
     }
 
+    /**
+     * Method to modify content of file
+     * @param fileName String containing name of file.
+     * @param body String containing new file body.
+     * @return default boolean value.
+     */
     @Override
     public boolean modifyNote(String fileName, String body) {
 

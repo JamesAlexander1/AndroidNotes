@@ -2,10 +2,8 @@ package a4336.a0.practise.james.mvppractise.Presenter;
 
 import android.content.Context;
 
-import java.util.ArrayList;
 
-
-import a4336.a0.practise.james.mvppractise.DAO.IDAO;
+import a4336.a0.practise.james.mvppractise.DTO.IDTO;
 import a4336.a0.practise.james.mvppractise.Model.ModelImpl;
 import a4336.a0.practise.james.mvppractise.Model.ModelInterface;
 import a4336.a0.practise.james.mvppractise.View.ViewInterface;
@@ -60,8 +58,8 @@ public class NoteDetailPresenter implements PresenterInterface<String>{
     }
 
     @Override
-    public IDAO retrieveModel() {
-        IDAO<String> dao = model.getSpecificNote(note_title);
+    public IDTO retrieveModel() {
+        IDTO<String> dao = model.getSpecificNote(note_title);
 
         return dao;
     }
@@ -69,7 +67,7 @@ public class NoteDetailPresenter implements PresenterInterface<String>{
 
 
     @Override
-    public void doAction(IDAO<String> dao) {
+    public void doAction(IDTO<String> dao) {
 
 
 

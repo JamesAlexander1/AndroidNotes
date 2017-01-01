@@ -2,9 +2,7 @@ package a4336.a0.practise.james.mvppractise.Presenter;
 
 import android.content.Context;
 
-import java.util.ArrayList;
-
-import a4336.a0.practise.james.mvppractise.DAO.IDAO;
+import a4336.a0.practise.james.mvppractise.DTO.IDTO;
 import a4336.a0.practise.james.mvppractise.Model.ModelImpl;
 import a4336.a0.practise.james.mvppractise.Model.ModelInterface;
 import a4336.a0.practise.james.mvppractise.View.ViewInterface;
@@ -61,16 +59,16 @@ public class ListPresenter implements PresenterInterface {
     }
 
     @Override
-    public IDAO retrieveModel() {
+    public IDTO retrieveModel() {
         /**
          * Retreive list of txt files from file directory.
          */
-        IDAO data = model.getNoteList();
+        IDTO data = model.getNoteList();
         return data;
     }
 
     @Override
-    public void doAction(IDAO dao) {
+    public void doAction(IDTO dao) {
 
     }
 

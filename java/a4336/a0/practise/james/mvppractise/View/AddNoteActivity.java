@@ -8,8 +8,8 @@ import android.widget.EditText;
 
 import java.util.ArrayList;
 
-import a4336.a0.practise.james.mvppractise.DAO.DAO;
-import a4336.a0.practise.james.mvppractise.DAO.IDAO;
+import a4336.a0.practise.james.mvppractise.DTO.DTO;
+import a4336.a0.practise.james.mvppractise.DTO.IDTO;
 import a4336.a0.practise.james.mvppractise.Presenter.AddNotePresenter;
 import a4336.a0.practise.james.mvppractise.Presenter.PresenterInterface;
 import a4336.a0.practise.james.mvppractise.R;
@@ -56,7 +56,7 @@ public class AddNoteActivity extends AppCompatActivity implements ViewInterface{
         input.add(titleText.getText().toString());
         input.add(bodyText.getText().toString());
         System.out.println(bodyText.getText().toString());
-        IDAO<String> dao = new DAO<String>(input);
+        IDTO<String> dao = new DTO<String>(input);
         input = null;
 
         presenter.doAction(dao);

@@ -2,10 +2,8 @@ package a4336.a0.practise.james.mvppractise.Model;
 
 import android.content.Context;
 
-import java.util.ArrayList;
-
-import a4336.a0.practise.james.mvppractise.DAO.DAO;
-import a4336.a0.practise.james.mvppractise.DAO.IDAO;
+import a4336.a0.practise.james.mvppractise.DTO.DTO;
+import a4336.a0.practise.james.mvppractise.DTO.IDTO;
 
 /**
  * Model component of MVP.
@@ -21,9 +19,9 @@ public class ModelImpl implements ModelInterface{
         storageAccess = new InternalAccess(context);
     }
 
-    public IDAO getNoteList(){
+    public IDTO getNoteList(){
 
-        return new DAO(storageAccess.getNoteList());
+        return new DTO(storageAccess.getNoteList());
     }
 
     @Override
@@ -47,11 +45,11 @@ public class ModelImpl implements ModelInterface{
 
     }
 
-    public IDAO getSpecificNote(String note_title){
+    public IDTO getSpecificNote(String note_title){
 
-        DAO<String> dao = new DAO<String>(storageAccess.getSpecificNote(note_title));
+        DTO<String> DTO = new DTO<String>(storageAccess.getSpecificNote(note_title));
 
-        return dao;
+        return DTO;
     }
 
     @Override

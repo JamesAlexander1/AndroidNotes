@@ -4,7 +4,7 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
-import a4336.a0.practise.james.mvppractise.DAO.IDAO;
+import a4336.a0.practise.james.mvppractise.DTO.IDTO;
 import a4336.a0.practise.james.mvppractise.Model.ModelImpl;
 import a4336.a0.practise.james.mvppractise.Model.ModelInterface;
 
@@ -62,13 +62,13 @@ public class AddNotePresenter implements PresenterInterface<String> {
     }
 
     @Override
-    public IDAO retrieveModel() {
+    public IDTO retrieveModel() {
 
         return null;
     }
 
     @Override
-    public void doAction(IDAO<String> dao) {
+    public void doAction(IDTO<String> dao) {
         ArrayList<String> temp = dao.getFields();
         model.SaveNote(temp.get(0), temp.get(1));
     }
