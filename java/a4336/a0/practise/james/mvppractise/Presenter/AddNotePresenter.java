@@ -2,36 +2,37 @@ package a4336.a0.practise.james.mvppractise.Presenter;
 
 import android.content.Context;
 
+import java.util.ArrayList;
+
 import a4336.a0.practise.james.mvppractise.DTO.IDTO;
 import a4336.a0.practise.james.mvppractise.Model.ModelImpl;
 import a4336.a0.practise.james.mvppractise.Model.ModelInterface;
+
 import a4336.a0.practise.james.mvppractise.View.ViewInterface;
 
 /**
- * Created by james on 13/12/16.
+ * Created by james on 15/12/16.
  */
 
-public class ListPresenter implements PresenterInterface {
+public class AddNotePresenter implements PresenterInterface<String> {
 
-    private ViewInterface mainView;
     private ModelInterface model;
+    private ViewInterface mainView;
 
-    /**
-     *
-     * @param view
-     * @param context <- check if there is a way around this.
-     */
-    public ListPresenter(ViewInterface view, Context context){
+    public AddNotePresenter(ViewInterface view, Context context) {
 
         mainView = view;
+        /**
+         * maybe have view display operation success message?
+         */
         model = new ModelImpl(context);
+    }
+    @Override
+    public void onStart() {
 
     }
 
-
-    public void onStart(){
-
-    }
+    @Override
     public void onRestart() {
 
     }
@@ -44,32 +45,32 @@ public class ListPresenter implements PresenterInterface {
     }
 
 
+    @Override
     public void onDestroy() {
+
 
     }
 
-
+    @Override
     public void onPause() {
 
     }
 
-
+    @Override
     public void onResume() {
 
     }
 
     @Override
     public IDTO retrieveModel() {
-        /**
-         * Retreive list of txt files from file directory.
-         */
-        IDTO data = model.getNoteList();
-        return data;
+
+        return null;
     }
 
     @Override
-    public void doAction(IDTO dao) {
-
+    public void doAction(IDTO<String> dao) {
+        ArrayList<String> temp = dao.getFields();
+        model.SaveNote(temp.get(0), temp.get(1));
     }
 
 

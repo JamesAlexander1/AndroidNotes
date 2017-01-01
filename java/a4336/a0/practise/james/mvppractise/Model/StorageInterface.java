@@ -12,6 +12,8 @@ public interface StorageInterface {
     ArrayList<String> getNoteList();
 
     boolean deleteNote(String fileName);
-
+    boolean createFile(String title, String noteBody);
     boolean clean();
+    ArrayList<String> getSpecificNote(String title);
+    boolean modifyNote(String fileName, String body);
 }

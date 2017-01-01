@@ -1,4 +1,4 @@
-package a4336.a0.practise.james.mvppractise.DAO;
+package a4336.a0.practise.james.mvppractise.DTO;
 
 import java.util.ArrayList;
 
@@ -6,11 +6,11 @@ import java.util.ArrayList;
  * Created by james on 14/12/16.
  */
 
-public class DAO<String> implements IDAO<String>{
+public class DTO<String> implements IDTO<String> {
 
     private ArrayList<String> fields;
 
-    public DAO(ArrayList<String> modelInput){
+    public DTO(ArrayList<String> modelInput){
         fields = modelInput;
     }
     @Override

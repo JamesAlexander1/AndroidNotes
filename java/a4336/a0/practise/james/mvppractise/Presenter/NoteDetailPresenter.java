@@ -2,36 +2,35 @@ package a4336.a0.practise.james.mvppractise.Presenter;
 
 import android.content.Context;
 
+
 import a4336.a0.practise.james.mvppractise.DTO.IDTO;
 import a4336.a0.practise.james.mvppractise.Model.ModelImpl;
 import a4336.a0.practise.james.mvppractise.Model.ModelInterface;
 import a4336.a0.practise.james.mvppractise.View.ViewInterface;
 
 /**
- * Created by james on 13/12/16.
+ * Created by james on 17/12/16.
  */
 
-public class ListPresenter implements PresenterInterface {
+public class NoteDetailPresenter implements PresenterInterface<String>{
 
     private ViewInterface mainView;
     private ModelInterface model;
+    private String note_title;
 
-    /**
-     *
-     * @param view
-     * @param context <- check if there is a way around this.
-     */
-    public ListPresenter(ViewInterface view, Context context){
+    public NoteDetailPresenter(ViewInterface view, Context context, String title){
 
         mainView = view;
         model = new ModelImpl(context);
+        note_title = title;
+    }
+
+    @Override
+    public void onStart() {
 
     }
 
-
-    public void onStart(){
-
-    }
+    @Override
     public void onRestart() {
 
     }
@@ -43,36 +42,38 @@ public class ListPresenter implements PresenterInterface {
         mainView = null;
     }
 
-
+    @Override
     public void onDestroy() {
 
     }
 
-
+    @Override
     public void onPause() {
 
     }
 
-
+    @Override
     public void onResume() {
 
     }
 
     @Override
     public IDTO retrieveModel() {
-        /**
-         * Retreive list of txt files from file directory.
-         */
-        IDTO data = model.getNoteList();
-        return data;
+        IDTO<String> dao = model.getSpecificNote(note_title);
+
+        return dao;
     }
+
+
 
     @Override
-    public void doAction(IDTO dao) {
+    public void doAction(IDTO<String> dao) {
+
+
+
+            model.deleteNote(note_title);
 
     }
-
-
 
 
 }

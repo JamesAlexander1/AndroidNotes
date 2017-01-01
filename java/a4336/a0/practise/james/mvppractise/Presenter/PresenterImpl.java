@@ -1,8 +1,6 @@
 package a4336.a0.practise.james.mvppractise.Presenter;
 
-import a4336.a0.practise.james.mvppractise.DAO.IDAO;
-import a4336.a0.practise.james.mvppractise.Model.ModelImpl;
-import a4336.a0.practise.james.mvppractise.Model.ModelInterface;
+import a4336.a0.practise.james.mvppractise.DTO.IDTO;
 import a4336.a0.practise.james.mvppractise.View.ViewInterface;
 
 /**
@@ -29,13 +27,18 @@ public class PresenterImpl implements PresenterInterface{
 
     }
 
-
-    public void onDestroy() {
+    @Override
+    public void onStop() {
         /**
          * add functionality to dereference all model.
          */
         //model = null;
         mainView = null;
+    }
+
+
+    public void onDestroy() {
+
     }
 
 
@@ -49,9 +52,15 @@ public class PresenterImpl implements PresenterInterface{
     }
 
     @Override
-    public IDAO retrieveModel() {
+    public IDTO retrieveModel() {
         return null;
     }
+
+    @Override
+    public void doAction(IDTO dao) {
+
+    }
+
 
 
 }
