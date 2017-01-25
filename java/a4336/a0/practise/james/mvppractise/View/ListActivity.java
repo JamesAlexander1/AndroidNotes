@@ -153,14 +153,14 @@ public class ListActivity extends AppCompatActivity implements ViewInterface{
 
         IDTO data = presenter.retrieveModel();
         ArrayList<String> notes = data.getFields();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, notes);
+       final ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, notes);
 
 
         /**
          * Display fields in listView.
          */
         try {
-            listView.setAdapter(adapter);
+            listView.setAdapter(adapter2);
 
             /**
              * Add functionality for clicking on specific list items.
@@ -169,7 +169,7 @@ public class ListActivity extends AppCompatActivity implements ViewInterface{
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                    String temp = adapter.getItem(position);
+                    String temp = adapter2.getItem(position);
 
                     TextView tempText = (TextView) findViewById(R.id.temp_textView);
                     /**
