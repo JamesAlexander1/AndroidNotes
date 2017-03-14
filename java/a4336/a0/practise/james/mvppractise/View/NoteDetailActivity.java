@@ -24,10 +24,13 @@ import a4336.a0.practise.james.mvppractise.R;
  */
 public class NoteDetailActivity extends AppCompatActivity implements ViewInterface{
 
-    private PresenterInterface deleteAndRetrievePresenter;
-    private PresenterInterface savePresenter;
+    private PresenterInterface deleteAndRetrievePresenter;  //type NodeDetailPresenter
+    private PresenterInterface savePresenter;               //type AddNotePresenter
     private String noteTitle;
 
+    /**
+     * need to refactor.
+     */
     boolean hack = true;
     TextView title;
     EditText editText;
@@ -59,6 +62,8 @@ public class NoteDetailActivity extends AppCompatActivity implements ViewInterfa
         });
         title = (TextView) findViewById(R.id.node_detail_title_text_view);
         editText = (EditText) findViewById(R.id.note_detail_editText);
+
+        //
         editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
